@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClarityAI Settings</title>
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Settings</h1>
+        <div class="grid">
+          <div class="row">
+            <label>Model</label>
+            <input id="model" placeholder="gemini-1.5-flash" />
+          </div>
+          <div class="row">
+            <label>Summary style</label>
+            <select id="summaryStyle">
+              <option value="short">Short</option>
+              <option value="bullets">Bullets</option>
+              <option value="detailed">Detailed</option>
+            </select>
+          </div>
+          <div class="row" style="grid-column: 1 / -1;">
+            <label>Gemini API Key <span style="color: #d93025;">*Required</span></label>
+            <input id="geminiApiKey" placeholder="AIza..." />
+            <div class="help-text">
+              <p>To get your API key:</p>
+              <ol>
+                <li>Go to <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></li>
+                <li>Sign in with your Google account</li>
+                <li>Click "Create API Key"</li>
+                <li>Copy the key and paste it above</li>
+              </ol>
+              <p><strong>Note:</strong> The API key is stored locally in your browser and is not shared.</p>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="save">Save</button>
+          <button id="testKey">Test API Key</button>
+          <span id="status"></span>
+        </div>
+      </div>
+    </div>
+    <script src="options.js"></script>
+  </body>
+  </html>
+

@@ -1,0 +1,46 @@
+:root { 
+  color-scheme: dark; 
+  
+  /* Dark mode color variables */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --bg-card: #2a2a2a;
+  --bg-input: #3a3a3a;
+  --bg-button: #404040;
+  --bg-button-hover: #4a4a4a;
+  --bg-button-primary: #1a73e8;
+  --bg-button-primary-hover: #1557b0;
+  --bg-button-disabled: #555555;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #888888;
+  --text-link: #66b3ff;
+  --text-link-hover: #99ccff;
+  
+  --border-primary: #404040;
+  --border-secondary: #555555;
+  --border-focus: #1a73e8;
+  
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.5);
+  --shadow-heavy: rgba(0, 0, 0, 0.7);
+  
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --info: #2196f3;
+}
+
+* { 
+  box-sizing: border-box; 
+}
+
+body { 
+  margin: 0; 
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+

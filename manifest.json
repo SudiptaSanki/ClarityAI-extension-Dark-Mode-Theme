@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "ClarityAI",
+  "version": "0.1.0",
+  "description": "Summarize the current page using AI.",
+  "permissions": ["storage", "activeTab", "scripting", "contextMenus", "tabs"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "icons": {
+    "16": "SmartSummarizer Logo with Paper and Digital Interface.png",
+    "32": "SmartSummarizer Logo with Paper and Digital Interface.png",
+    "48": "SmartSummarizer Logo with Paper and Digital Interface.png",
+    "128": "SmartSummarizer Logo with Paper and Digital Interface.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "ClarityAI",
+    "default_icon": {
+      "16": "SmartSummarizer Logo with Paper and Digital Interface.png",
+      "32": "SmartSummarizer Logo with Paper and Digital Interface.png",
+      "48": "SmartSummarizer Logo with Paper and Digital Interface.png",
+      "128": "SmartSummarizer Logo with Paper and Digital Interface.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
+

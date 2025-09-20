@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClarityAI</title>
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 id="title">ClarityAI</h1>
+      </div>
+      <div class="controls">
+        <select id="summaryStyle" class="summary-style-select">
+          <option value="short">Short Summary</option>
+          <option value="bullets">Bullet Points</option>
+          <option value="detailed">Detailed Summary</option>
+        </select>
+        <button id="summarize" class="btn primary">Summarize</button>
+      </div>
+      <div class="button-group">
+        <button id="extractText" class="btn">Extract Text</button>
+        <button id="testApi" class="btn">Test API</button>
+      </div>
+      <pre id="output" class="output">No summary yet.</pre>
+      <div class="button-group">
+        <button id="copySummary" class="btn">Copy Summary</button>
+      </div>
+      <div class="links">
+        <a href="#" id="openOptions">Settings</a>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+  </html>
+

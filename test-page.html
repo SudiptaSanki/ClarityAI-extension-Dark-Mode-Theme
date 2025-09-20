@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page for ClarityAI Extension</title>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3a3a3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-muted: #888888;
+            --border-primary: #404040;
+            --accent-primary: #1a73e8;
+            --accent-secondary: #ffc107;
+            --success: #4caf50;
+            --warning: #ff9800;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        h1 {
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 10px;
+        }
+        
+        h2, h3 {
+            color: var(--text-primary);
+        }
+        
+        .content {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid var(--border-primary);
+        }
+        
+        .highlight {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-left: 4px solid var(--accent-secondary);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight h3 {
+            color: var(--accent-secondary);
+            margin-top: 0;
+        }
+        
+        ul, ol {
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin: 4px 0;
+        }
+        
+        p {
+            color: var(--text-secondary);
+        }
+        
+        em {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Page for ClarityAI Extension</h1>
+    
+    <div class="content">
+        <h2>About This Page</h2>
+        <p>This is a test page designed to help debug the ClarityAI browser extension. It contains various types of content including text, headings, and structured information that should be easy for the AI to summarize.</p>
+        
+        <p>The page includes multiple paragraphs with different topics to test the extension's ability to extract and summarize content from web pages. This should help identify any issues with text extraction or API communication.</p>
+    </div>
+    
+    <div class="highlight">
+        <h3>Key Features to Test</h3>
+        <ul>
+            <li>Text extraction from different HTML elements</li>
+            <li>Handling of various content types</li>
+            <li>API communication with Gemini</li>
+            <li>Summary generation and display</li>
+            <li>Error handling and user feedback</li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <h2>Technical Details</h2>
+        <p>The extension should be able to extract this text content and send it to the Gemini API for summarization. If there are any issues with the API key, rate limiting, or text processing, they should become apparent when testing with this page.</p>
+        
+        <p>This test page contains approximately 200-300 words of meaningful content that should provide a good basis for testing the summarization functionality. The content is structured in a way that makes it easy to verify if the summary is accurate and relevant.</p>
+    </div>
+    
+    <div class="highlight">
+        <h3>Testing Steps</h3>
+        <ol>
+            <li>Open this page in your browser</li>
+            <li>Click on the ClarityAI extension icon</li>
+            <li>Ensure your API key is set in the options</li>
+            <li>Click "Test API" to verify connectivity</li>
+            <li>Click "Summarize" to test the full functionality</li>
+            <li>Check the console for any error messages</li>
+        </ol>
+    </div>
+    
+    <div class="content">
+        <h2>Expected Behavior</h2>
+        <p>When working correctly, the extension should extract the text content from this page, send it to the Gemini API, and return a summary that captures the main points about testing the extension functionality.</p>
+        
+        <p>If there are any issues, the extension should provide clear error messages explaining what went wrong, whether it's an API key problem, rate limiting issue, or content extraction problem.</p>
+    </div>
+    
+    <script>
+        // Add some dynamic content to test with
+        document.addEventListener('DOMContentLoaded', function() {
+            const timestamp = new Date().toLocaleString();
+            const footer = document.createElement('div');
+            footer.innerHTML = `<p><em>Page loaded at: ${timestamp}</em></p>`;
+            footer.style.textAlign = 'center';
+            footer.style.marginTop = '40px';
+            footer.style.padding = '20px';
+            footer.style.borderTop = '1px solid #ddd';
+            document.body.appendChild(footer);
+        });
+    </script>
+</body>
+</html>
