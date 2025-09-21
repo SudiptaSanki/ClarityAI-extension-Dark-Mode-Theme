@@ -16,7 +16,7 @@ A Chrome extension that uses Google's Gemini AI to summarize web pages.
 - 🔧 Customizable settings
 - 🧪 API key testing functionality
 
-## Setup Instructions
+## Setup Instructions :
 
 ### 1. Get a Gemini API Key
 
