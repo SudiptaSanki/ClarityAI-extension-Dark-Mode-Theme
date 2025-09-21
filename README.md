@@ -18,14 +18,14 @@ A Chrome extension that uses Google's Gemini AI to summarize web pages.
 
 ## Setup Instructions
 
-### 1. Get a Gemini API Key
+### 1. Get a Gemini API Key :
 
 1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Sign in with your Google account
 3. Click "Create API Key"
 4. Copy the generated API key (starts with "AIza...")
 
-### 2. Install the Extension
+### 2. Install the Extension :
 
 1. Download or clone this repository
 2. Open Chrome and go to `chrome://extensions/`
@@ -33,7 +33,7 @@ A Chrome extension that uses Google's Gemini AI to summarize web pages.
 4. Click "Load unpacked" and select the extension folder
 5. *Only if you didnot find it you can see any YouTube video to know you browser settings
 
-### 3. Configure the Extension
+### 3. Configure the Extension :
 
 1. Click the ClarityAI extension icon in your toolbar
 2. Click "Settings" in the popup
@@ -41,7 +41,7 @@ A Chrome extension that uses Google's Gemini AI to summarize web pages.
 4. Click "Test API Key" to verify it works
 5. Click "Save"
 
-### 4. Use the Extension
+### 4. Use the Extension :
 
 - **Auto-summarize**: Click the extension icon to automatically summarize the current page
 - **Context menu**: Right-click on any page and select "Summarize this page with ClarityAI"
