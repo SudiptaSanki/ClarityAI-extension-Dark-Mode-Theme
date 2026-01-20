@@ -21,24 +21,24 @@ if (!document.getElementById("debugButton")) {
   debugButton.style.border = "none";
   debugButton.style.borderRadius = "4px";
   debugButton.style.cursor = "pointer";
-  
+
   debugButton.addEventListener("click", async () => {
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       const storage = await chrome.storage.local.get(["geminiApiKey", "model", "summaryStyle"]);
-      
+
       outputPre.textContent = `🔍 Debug Information:
       
 Active Tab: ${tab?.url || 'None'}
 API Key: ${storage.geminiApiKey ? '✅ Set' : '❌ Not set'}
-Model: ${storage.model || 'gemini-1.5-flash'}
+Model: ${storage.model || 'gemini-2.5-flash'}
 Style: ${storage.summaryStyle || 'short'}
 Storage Keys: ${Object.keys(storage).join(', ')}`;
     } catch (e) {
       outputPre.textContent = `Debug Error: ${e.message}`;
     }
   });
-  
+
   // Insert after the copy button
   copySummaryButton.parentNode.insertBefore(debugButton, copySummaryButton.nextSibling);
 }
@@ -49,12 +49,12 @@ chrome.storage.local.get(["lastSummary", "geminiApiKey", "summaryStyle", "isSumm
     outputPre.textContent = "⚠️ Please set your Gemini API key in Settings first.\n\nTo get an API key:\n1. Go to https://makersuite.google.com/app/apikey\n2. Create a new API key\n3. Copy it and paste it in the Settings page";
     return;
   }
-  
+
   // Set the summary style dropdown to saved value
   if (summaryStyle) {
     summaryStyleSelect.value = summaryStyle;
   }
-  
+
   // Check if summarization is in progress
   if (isSummarizing) {
     outputPre.textContent = "🔄 Summarization in progress... Please wait.";
@@ -85,7 +85,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
         summarizeButton.textContent = "Summarize";
       }
     }
-    
+
     // Handle summarization state changes
     if (changes.isSummarizing) {
       const isSummarizing = changes.isSummarizing.newValue;
@@ -111,31 +111,31 @@ async function performSummarize() {
     outputPre.textContent = "⚠️ Please set your Gemini API key in Settings first.";
     return;
   }
-  
+
   outputPre.textContent = "🔄 Extracting page content...";
   summarizeButton.disabled = true;
   summarizeButton.textContent = "Extracting...";
-  
+
   try {
     const selectedStyle = summaryStyleSelect.value;
     await chrome.storage.local.set({ summaryStyle: selectedStyle });
-    
+
     // Update status to show we're now summarizing
     outputPre.textContent = "🔄 Summarizing with AI... Please wait.";
     summarizeButton.textContent = "Summarizing...";
-    
+
     // Add timeout to prevent hanging
-    const timeoutPromise = new Promise((_, reject) => 
+    const timeoutPromise = new Promise((_, reject) =>
       setTimeout(() => reject(new Error("Request timed out after 30 seconds")), 30000)
     );
-    
-    const messagePromise = chrome.runtime.sendMessage({ 
+
+    const messagePromise = chrome.runtime.sendMessage({
       type: "SUMMARIZE_ACTIVE_TAB",
       summaryStyle: selectedStyle
     });
-    
+
     const response = await Promise.race([messagePromise, timeoutPromise]);
-    
+
     if (response?.error) {
       outputPre.textContent = `❌ Error: ${response.error}`;
       console.error("Summarization error:", response.error);
@@ -222,28 +222,28 @@ testApiButton.addEventListener("click", async () => {
   outputPre.textContent = "Testing API connection...";
   testApiButton.disabled = true;
   testApiButton.textContent = "Testing...";
-  
+
   try {
-    const { geminiApiKey, model = "gemini-1.5-flash" } = await chrome.storage.local.get(["geminiApiKey", "model"]);
-    
+    const { geminiApiKey, model = "gemini-2.5-flash" } = await chrome.storage.local.get(["geminiApiKey", "model"]);
+
     if (!geminiApiKey) {
       outputPre.textContent = "No API key found. Please set your API key in Settings.";
       return;
     }
-    
+
     // Add timeout to prevent hanging
-    const timeoutPromise = new Promise((_, reject) => 
+    const timeoutPromise = new Promise((_, reject) =>
       setTimeout(() => reject(new Error("API test timed out after 15 seconds")), 15000)
     );
-    
-    const messagePromise = chrome.runtime.sendMessage({ 
+
+    const messagePromise = chrome.runtime.sendMessage({
       type: "TEST_API",
       apiKey: geminiApiKey,
       model: model
     });
-    
+
     const response = await Promise.race([messagePromise, timeoutPromise]);
-    
+
     if (response?.error) {
       outputPre.textContent = `❌ API Test Failed: ${response.error}`;
     } else if (response?.result) {
