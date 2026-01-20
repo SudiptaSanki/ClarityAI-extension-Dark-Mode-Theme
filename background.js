@@ -47,7 +47,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 async function summarizeWithAI(text, summaryStyle = "short") {
   try {
     const {
-      model = "gemini-1.5-flash",
+      model = "gemini-2.5-flash",
       geminiApiKey = ""
     } = (await chrome.storage.local.get([
       "model",
@@ -175,7 +175,7 @@ function buildPrompt(text, style) {
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message?.type === "TEST_API") {
     try {
-      const { apiKey, model = "gemini-1.5-flash" } = message;
+      const { apiKey, model = "gemini-2.5-flash" } = message;
       
       if (!apiKey) {
         return sendResponse({ error: "No API key provided" });
