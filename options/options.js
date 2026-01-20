@@ -7,7 +7,7 @@ const statusEl = document.getElementById("status");
 
 async function load() {
   const {
-    model = "gemini-1.5-flash",
+    model = "gemini-2.5-flash",
     geminiApiKey = "",
     summaryStyle = "short"
   } = (await chrome.storage.local.get([
@@ -21,10 +21,10 @@ async function load() {
 }
 
 async function save() {
-  const model = modelInput.value.trim() || "gemini-1.5-flash";
+  const model = modelInput.value.trim() || "gemini-2.5-flash";
   const geminiApiKey = geminiKeyInput.value.trim();
   const summaryStyle = styleSelect.value;
-  
+
   if (!geminiApiKey) {
     statusEl.textContent = "Error: API key is required";
     statusEl.style.color = "var(--error)";
@@ -34,7 +34,7 @@ async function save() {
     }, 3000);
     return;
   }
-  
+
   await chrome.storage.local.set({ model, geminiApiKey, summaryStyle });
   statusEl.textContent = "Saved successfully!";
   statusEl.style.color = "var(--success)";
@@ -55,16 +55,16 @@ async function testApiKey() {
     }, 3000);
     return;
   }
-  
+
   testBtn.disabled = true;
   testBtn.textContent = "Testing...";
   statusEl.textContent = "Testing API key...";
-  
+
   try {
     // Add a small delay to prevent rate limiting
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(geminiApiKey)}`, {
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(geminiApiKey)}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -72,10 +72,10 @@ async function testApiKey() {
         generationConfig: { temperature: 0.1 }
       })
     });
-    
+
     if (!response.ok) {
       let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-      
+
       if (response.status === 429) {
         errorMessage = "Rate limit exceeded. Please wait a moment and try again.";
       } else if (response.status === 403) {
@@ -83,10 +83,10 @@ async function testApiKey() {
       } else if (response.status === 400) {
         errorMessage = "Invalid request. Please check your API key.";
       }
-      
+
       throw new Error(errorMessage);
     }
-    
+
     const data = await response.json();
     if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
       statusEl.textContent = "✅ API key is working!";
@@ -98,12 +98,12 @@ async function testApiKey() {
     statusEl.textContent = `❌ API key test failed: ${error.message}`;
     statusEl.style.color = "var(--error)";
   }
-  
+
   setTimeout(() => {
     statusEl.textContent = "";
     statusEl.style.color = "";
   }, 5000);
-  
+
   testBtn.disabled = false;
   testBtn.textContent = "Test API Key";
 }
